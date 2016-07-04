@@ -16,14 +16,16 @@
 
 package org.cyanogenmod.hardware;
 
-import org.cyanogenmod.internal.util.FileUtils;
+import java.io.File;
+
+import org.cyanogenmod.hardware.util.FileUtils;
 
 public class VibratorHW {
 
     private static String AMP_PATH = "/sys/class/timed_output/vibrator/vmax_mv";
 
     public static boolean isSupported() {
-        return FileUtils.isFileWritable(AMP_PATH);
+        return new File(AMP_PATH).exists();
     }
 
     public static int getMaxIntensity()  {
