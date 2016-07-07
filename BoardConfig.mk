@@ -20,9 +20,6 @@
 # definition file).
 #
 
-# Boldly go.
-USE_CLANG_PLATFORM_BUILD := true
-
 # Inherit from oppo-common
 -include device/oppo/common/BoardConfigCommon.mk
 
@@ -183,12 +180,6 @@ BOARD_FLASH_BLOCK_SIZE := 262144
 # RIL
 TARGET_RIL_VARIANT := caf
 
-# Recovery
-TARGET_RECOVERY_FSTAB := $(PLATFORM_PATH)/rootdir/etc/fstab.qcom
-BOARD_HAS_LARGE_FILESYSTEM := true
-TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_USERIMAGES_USE_F2FS := true
-
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 
@@ -216,18 +207,47 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 # inherit from the proprietary version
 -include vendor/oneplus/oneplus3/BoardConfigVendor.mk
 
+# Recovery
+TARGET_RECOVERY_FSTAB := $(PLATFORM_PATH)/rootdir/etc/fstab.qcom
+BOARD_HAS_LARGE_FILESYSTEM := true
+TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
+
 # TWRP specific build flags
 TW_THEME := portrait_hdpi
 RECOVERY_SDCARD_ON_DATA := true
 BOARD_HAS_NO_REAL_SDCARD := true
 BOARD_HAS_NO_SELECT_BUTTON := true
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888"
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/module/g_android/parameters/file"
-TW_BRIGHTNESS_PATH := "/sys/devices/soc/900000.qcom\x2cmdss_mdp/900000.qcom\x2cmdss_mdp:qcom\x2cmdss_fb_primary/leds/lcd-backlight/brightness"
+TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
 TW_MAX_BRIGHTNESS := 255
 TW_DEFAULT_BRIGHTNESS := 162
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_MTP_DEVICE := "/dev/mtp_usb"
 TW_NO_EXFAT_FUSE := true
 TW_INCLUDE_CRYPTO := true
+
+# MR config. MultiROM also uses parts of TWRP config
+TARGET_RECOVERY_IS_MULTIROM := true
+MR_ALLOW_NKK71_NOKEXEC_WORKAROUND := true
+MR_DPI := hdpi
+MR_DPI_FONT := 216
+MR_USE_MROM_FSTAB := true
+MR_FSTAB := $(PLATFORM_PATH)/multirom/mrom.fstab
+MR_PIXEL_FORMAT := "RGBA_8888"
+MR_INPUT_TYPE := type_b
+MR_INIT_DEVICES := $(PLATFORM_PATH)/multirom/mr_init_devices.c
+MR_KEXEC_MEM_MIN := 0x00200000
+MR_DEVICE_HOOKS := $(PLATFORM_PATH)/multirom/mr_hooks.c
+MR_DEVICE_HOOKS_VER := 4
+MR_DEVICE_VARIANTS := OnePlus3
+
+DEVICE_RESOLUTION := 1080x1920
+MR_DEV_BLOCK_BOOTDEVICE := true
+
+#Force populating /dev/block/platform/msm_sdcc.1/by-name
+#from the emmc, needed by devices like the HTC One M7
+MR_POPULATE_BY_NAME_PATH := "/dev/block/platform/msm_sdcc.1/by-name"
+

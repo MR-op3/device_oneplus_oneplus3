@@ -4,5 +4,8 @@
 /data       ext4   /dev/block/bootdevice/by-name/userdata    flags=encryptable=footer
 /cache      ext4   /dev/block/bootdevice/by-name/cache
 /firmware   vfat   /dev/block/bootdevice/by-name/modem       flags=mounttodecrypt;fsflags=context=u:object_r:firmware_file:s0
+/system_image	emmc	/dev/block/bootdevice/by-name/system
+/efs1			emmc	/dev/block/bootdevice/by-name/modemst1	flags=backup=1;display=EFS
+/efs2	emmc /dev/block/bootdevice/by-name/modemst2	flags=backup=1;subpartitionof=/efs1
 
 /usbstorage vfat   /dev/block/sda1 /dev/block/sda            flags=display="USB Storage";storage;removable

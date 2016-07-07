@@ -5,6 +5,7 @@ on fs
     chown system drmrpc /dev/qseecom
     chmod 0664 /dev/ion
     chown system system /dev/ion
+    write /proc/touchpanel/double_tap_enable 1
 
 on property:ro.crypto.state=encrypted
     start sbinqseecomd
