@@ -28,25 +28,27 @@ const char *mr_init_devices[] =
     "/sys/block/sda/sda2", // persist
     "/sys/block/sde/sde11", // firmware
 
-    "/sys/bus/mmc",
+    "/sys/bus/mmc*",
     "/sys/bus/mmc/drivers/mmcblk",
     "/sys/bus/sdio/drivers",
-    "/sys/module/mmcblk",
-    "sys/module/sdhci",
-    "sys/module/sdhci/*",
+    "/sys/module/sdhci",
+    "/sys/module/sdhci*",
     "/sys/module/sdhci_msm",
-    "/sys/module/sdhci_msm/*",
+    "/sys/module/sdhci_msm*",
 
     // for input
     "/sys/devices/virtual/input*",
     "/sys/devices/virtual/input/input0",
     "/sys/devices/virtual/misc/uinput",
-    "/sys/devices/soc/soc/gpio_keys/input*",
+    "/sys/devices/soc/soc:gpio_keys/input4*",
+    "/sys/devices/soc/soc:gpio_keys/input0*",
     "/sys/bus/platform/devices/gpio_keys/input*"
     "/sys/devices/virtual/misc/uinput",
     "/sys/devices/virtual/misc/uinput/*",
     "/sys/devices/soc/75b6000.i2c/i2c-8/8-0020/input*",
-    "/sys/devices/soc/75b6000.i2c/i2c-8/8-0020/input/input5",
+    "/sys/devices/soc/75b6000.i2c/i2c-8/8-0020/input/input5*",
+    "/sys/devices/soc/7577000.i2c/i2c-3/3-0036/*",
+    "/sys/devices/soc/75ba000.i2c/i2c-12/12-0020/input/input3*",
 
     // for adb
     "/sys/class/tty/ptmx",
@@ -56,8 +58,11 @@ const char *mr_init_devices[] =
     "/sys/bus/platform/drivers/android_usb",
     "/sys/bus/usb",
 
-    // USB Drive is in here
-    "/sys/devices/platform/msm_hsusb_host*",
+    // USB Drive
+    "/sys/bus/platform/drivers/xhci-hcd*",
+
+    // for qualcomm overlay - /dev/ion
+    "/sys/devices/virtual/misc/ion",
 
     NULL
 };
