@@ -228,6 +228,9 @@ TW_SCREEN_BLANK_ON_BOOT := true
 TW_MTP_DEVICE := "/dev/mtp_usb"
 TW_NO_EXFAT_FUSE := true
 TW_INCLUDE_CRYPTO := true
+BOARD_SUPPRESS_EMMC_WIPE := true
+TW_UNMOUNT_FIRMWARE_ON_BOOT := true
+TWHAVE_SELINUX := true
 
 # MR config. MultiROM also uses parts of TWRP config
 TARGET_RECOVERY_IS_MULTIROM := true
@@ -237,7 +240,6 @@ MR_DPI := xxhdpi
 MR_DPI_FONT := 340
 MR_USE_MROM_FSTAB := true
 MR_FSTAB := $(PLATFORM_PATH)/multirom/mrom.fstab
-MR_PIXEL_FORMAT := "ABGR_8888"
 MR_INPUT_TYPE := type_b
 MR_INIT_DEVICES := $(PLATFORM_PATH)/multirom/mr_init_devices.c
 MR_KEXEC_MEM_MIN := 0x00200000
@@ -248,8 +250,10 @@ MR_DEVICE_VARIANTS := OnePlus3
 MR_USE_QCOM_OVERLAY := true
 MR_QCOM_OVERLAY_HEADER := $(PLATFORM_PATH)/multirom/mr_qcom_overlay.h
 MR_QCOM_OVERLAY_CUSTOM_PIXEL_FORMAT := MDP_RGBX_8888
-
+# bootmenu
 DEVICE_RESOLUTION := 1080x1920
+MR_PIXEL_FORMAT := "RGBA_8888"
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
 MR_DEV_BLOCK_BOOTDEVICE := true
 
 #Force populating /dev/block/platform/msm_sdcc.1/by-name
