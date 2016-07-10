@@ -4,5 +4,6 @@
 /data       ext4   /dev/block/sda15
 /data       f2fs   /dev/block/sda15
 /cache      ext4   /dev/block/sda3
+/cache      f2fs   /dev/block/sda3
 /persist	ext4	/dev/block/sda2
 /firmware   vfat   /dev/block/sde11
