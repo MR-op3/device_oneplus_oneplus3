@@ -255,9 +255,11 @@ DEVICE_RESOLUTION := 1080x1920
 MR_PIXEL_FORMAT := "RGBA_8888"
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 MR_DEV_BLOCK_BOOTDEVICE := true
-
-MR_DEVICE_SPECIFIC_VERSION := b
+# Versioning
 include $(PLATFORM_PATH)/multirom/MR_REC_VERSION.mk
+BOARD_MKBOOTIMG_ARGS += --board mrom$(MR_REC_VERSION)
+MR_REC_VERSION := $(shell date -u +%Y%m%d)-01
+MR_DEVICE_SPECIFIC_VERSION := b
 
 #Force populating /dev/block/platform/msm_sdcc.1/by-name
 #from the emmc
