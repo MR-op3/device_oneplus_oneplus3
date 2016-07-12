@@ -60,6 +60,8 @@ const char *mr_init_devices[] =
 
     // USB Drive
     "/sys/bus/platform/drivers/xhci-hcd*",
+    "/sys/block/sda/sda1",
+
 
     // for qualcomm overlay - /dev/ion
     "/sys/devices/virtual/misc/ion",

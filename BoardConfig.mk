@@ -256,6 +256,9 @@ MR_PIXEL_FORMAT := "RGBA_8888"
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 MR_DEV_BLOCK_BOOTDEVICE := true
 
+MR_DEVICE_SPECIFIC_VERSION := b
+include $(PLATFORM_PATH)/multirom/MR_REC_VERSION.mk
+
 #Force populating /dev/block/platform/msm_sdcc.1/by-name
 #from the emmc
 MR_POPULATE_BY_NAME_PATH := "/dev/block/platform/msm_sdcc.1/by-name"
