@@ -8,4 +8,4 @@
 /efs1			emmc	/dev/block/bootdevice/by-name/modemst1	flags=backup=1;display=EFS
 /efs2	emmc /dev/block/bootdevice/by-name/modemst2	flags=backup=1;subpartitionof=/efs1
 
-/usbstorage vfat   /dev/block/sda1 /dev/block/sda            flags=display="USB Storage";storage;removable
+/usb_otg vfat   /dev/block/sdg1 /dev/block/sdg            flags=display="USB Storage";storage;wipeingui;removable
