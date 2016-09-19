@@ -234,6 +234,7 @@ TWHAVE_SELINUX := true
 
 # MR config. MultiROM also uses parts of TWRP config
 TARGET_RECOVERY_IS_MULTIROM := true
+MR_NO_KEXEC := 2
 MR_ALLOW_NKK71_NOKEXEC_WORKAROUND := true
 MR_CONTINUOUS_FB_UPDATE := true
 MR_DPI := xhdpi
