@@ -46,9 +46,9 @@ const char *mr_init_devices[] =
     "/sys/devices/virtual/misc/uinput",
     "/sys/devices/virtual/misc/uinput/*",
     "/sys/devices/soc/75b6000.i2c/i2c-8/8-0020/input*",
-    "/sys/devices/soc/75b6000.i2c/i2c-8/8-0020/input/input5*",
+    "/sys/devices/soc/75b6000.i2c/i2c-8/8-0020/input/input6*",
     "/sys/devices/soc/7577000.i2c/i2c-3/3-0036/*",
-    "/sys/devices/soc/75ba000.i2c/i2c-12/12-0020/input/input3*",
+    "/sys/devices/soc/75ba000.i2c/i2c-12/12-0020/input/input4*",
 
     // for adb
     "/sys/class/tty/ptmx",
