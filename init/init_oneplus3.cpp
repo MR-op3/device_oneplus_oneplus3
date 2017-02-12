@@ -88,23 +88,41 @@ void init_alarm_boot_properties()
 }
 
 void vendor_load_properties() {
-    char device[PROP_VALUE_MAX];
-    char rf_version[PROP_VALUE_MAX];
-    int rc;
+	char rf_version[PROP_VALUE_MAX];
 
-    rc = property_get("ro.product.device", device);
-    if (!rc || strncmp(device, "OnePlus3", PROP_VALUE_MAX))
-        return;
+	property_get("ro.boot.rf_version", rf_version);
 
-    property_get("ro.boot.rf_version", rf_version);
-
-    if (strstr(rf_version, "11") || strstr(rf_version, "31")) {
-        /* Chinese/America*/
-        property_set("ro.product.model", "ONEPLUS A3000");
-    } else if (strstr(rf_version, "21")) {
-        /* Asia/Europe */
-        property_set("ro.product.model", "ONEPLUS A3003");
-    }
+	switch (atoi(rf_version)) {
+	/* OnePlus 3 */
+	case 11: /* China */
+	case 31: /* Americas */
+		property_set("ro.product.model", "ONEPLUS A3000");
+		property_set("ro.product.device", "OnePlus3");
+		property_set("ro.display.series", "OnePlus 3");
+		break;
+	case 21: /* Asia/Europe */
+		property_set("ro.product.model", "ONEPLUS A3003");
+		property_set("ro.product.device", "OnePlus3");
+		property_set("ro.display.series", "OnePlus 3");
+		break;
+	/* OnePlus 3T */
+	case 12: /* China */
+	case 32: /* Americas */
+		property_set("ro.product.model", "ONEPLUS A3000");
+		property_set("ro.product.device", "OnePlus3T");
+		property_set("ro.display.series", "OnePlus 3T");
+		break;
+	case 22: /* Asia/Europe */
+		property_set("ro.product.model", "ONEPLUS A3003");
+		property_set("ro.product.device", "OnePlus3T");
+		property_set("ro.display.series", "OnePlus 3T");
+		break;
+	/* default to OnePlus 3 */
+	default:
+		property_set("ro.product.model", "ONEPLUS A3000");
+		property_set("ro.product.device", "OnePlus3");
+		property_set("ro.display.series", "OnePlus 3");
+	}
 
     init_alarm_boot_properties();
 }

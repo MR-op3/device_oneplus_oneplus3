@@ -66,9 +66,11 @@ BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_APPEND_DTB := true
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
-TARGET_KERNEL_SOURCE := kernel/oneplus/msm8996
-TARGET_KERNEL_CONFIG := lineageos_oneplus3_defconfig
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+#TARGET_KERNEL_SOURCE := kernel/oneplus/msm8996
+#TARGET_KERNEL_CONFIG := lineageos_oneplus3_defconfig
+#TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+
+TARGET_PREBUILT_KERNEL := $(PLATFORM_PATH)/Image.gz-dtb
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
@@ -181,7 +183,7 @@ BOARD_FLASH_BLOCK_SIZE := 262144
 TARGET_RIL_VARIANT := caf
 
 # SELinux
-include device/qcom/sepolicy/sepolicy.mk
+#include device/qcom/sepolicy/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy
 
@@ -246,7 +248,7 @@ MR_KEXEC_MEM_MIN := 0xac000000
 MR_KEXEC_DTB := true
 MR_DEVICE_HOOKS := $(PLATFORM_PATH)/multirom/mr_hooks.c
 MR_DEVICE_HOOKS_VER := 4
-MR_DEVICE_VARIANTS := OnePlus3 oneplus3
+MR_DEVICE_VARIANTS := OnePlus3 oneplus3 OnePlus3T oneplus3t
 MR_USE_QCOM_OVERLAY := true
 MR_QCOM_OVERLAY_HEADER := $(PLATFORM_PATH)/multirom/mr_qcom_overlay.h
 MR_QCOM_OVERLAY_CUSTOM_PIXEL_FORMAT := MDP_RGBX_8888
@@ -255,12 +257,19 @@ DEVICE_RESOLUTION := 1080x1920
 MR_PIXEL_FORMAT := "RGBA_8888"
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 MR_DEV_BLOCK_BOOTDEVICE := true
-# Versioning
-include $(PLATFORM_PATH)/multirom/MR_REC_VERSION.mk
-BOARD_MKBOOTIMG_ARGS += --board mrom$(MR_REC_VERSION)
-MR_REC_VERSION := $(shell date -u +%Y%m%d)-01
-MR_DEVICE_SPECIFIC_VERSION := e
 MR_ENCRYPTION := true
+
+# Versioning
+TW_DEVICE_VERSION := 2
+
+include device/common/version-info/MR_REC_VERSION.mk
+
+ifeq ($(MR_REC_VERSION),)
+MR_REC_VERSION := $(shell date -u +%Y%m%d)-01
+endif
+
+BOARD_MKBOOTIMG_ARGS += --board mrom$(MR_REC_VERSION)
+
 
 #Force populating /dev/block/platform/msm_sdcc.1/by-name
 #from the emmc
