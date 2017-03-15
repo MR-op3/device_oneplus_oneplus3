@@ -28,6 +28,10 @@ const char *mr_init_devices[] =
     "/sys/block/sda/sda2", // persist
     "/sys/block/sde/sde11", // firmware
 
+    // frp
+    "/sys/block/sda/sda8", //frp
+    "/sys/block/sda/sda14", //config
+
     "/sys/bus/mmc*",
     "/sys/bus/mmc/drivers/mmcblk",
     "/sys/bus/sdio/drivers",
