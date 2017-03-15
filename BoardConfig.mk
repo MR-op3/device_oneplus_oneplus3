@@ -23,7 +23,7 @@
 # Inherit from oppo-common
 -include device/oppo/common/BoardConfigCommon.mk
 
-TARGET_OTA_ASSERT_DEVICE := OnePlus3,oneplus3,OnePlus3t,oneplus3t
+TARGET_OTA_ASSERT_DEVICE := OnePlus3,oneplus3,OnePlus3T,oneplus3t
 
 PLATFORM_PATH := device/oneplus/oneplus3
 
@@ -246,7 +246,7 @@ MR_KEXEC_MEM_MIN := 0xac000000
 MR_KEXEC_DTB := true
 MR_DEVICE_HOOKS := $(PLATFORM_PATH)/multirom/mr_hooks.c
 MR_DEVICE_HOOKS_VER := 4
-MR_DEVICE_VARIANTS := OnePlus3 oneplus3
+MR_DEVICE_VARIANTS := OnePlus3 oneplus3 OnePlus3T oneplus3t
 MR_USE_QCOM_OVERLAY := true
 MR_QCOM_OVERLAY_HEADER := $(PLATFORM_PATH)/multirom/mr_qcom_overlay.h
 MR_QCOM_OVERLAY_CUSTOM_PIXEL_FORMAT := MDP_RGBX_8888
